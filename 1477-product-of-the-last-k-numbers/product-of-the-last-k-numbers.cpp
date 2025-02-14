@@ -1,23 +1,26 @@
 class ProductOfNumbers {
 public:
     vector<int> vec;
+    int mult=1;
     ProductOfNumbers() {
         
     }
     
     void add(int num) {
-        vec.push_back(num);
+        if (num==0){
+            vec.clear();
+            mult = 1;
+        }
+        else{
+            mult*=num;
+            vec.push_back(mult);
+        }
     }
     
     int getProduct(int k) {
-        int mult = 1,i=vec.size()-1;
-        while(k>0 && i>=0){
-            if (vec[i]==0) return 0;
-            mult *= vec[i];
-            i--;
-            k--;
-        }
-        return mult;
+        if (vec.size() < k) return 0;
+        if (vec.size() == k) return vec.back();
+        return vec.back() / vec[vec.size() - k - 1];
     }
 };
 
