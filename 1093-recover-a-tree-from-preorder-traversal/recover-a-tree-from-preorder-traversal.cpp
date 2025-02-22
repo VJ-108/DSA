@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    //T.C: O(N), S.C: O(N) + O(N)
     TreeNode* findParent(TreeNode* temp,unordered_map <TreeNode*,pair<TreeNode*,int>> mpp,int level){
         if (level-mpp[temp].second==0){
             return mpp[temp].first;
@@ -31,7 +32,6 @@ public:
         TreeNode* root = new TreeNode(n);
         //child->{parent,childLevel}
         unordered_map <TreeNode*,pair<TreeNode*,int>> mpp;
-        // mpp[root]={root,0};
         TreeNode* temp = root;
         int prevCnt=0;
         int currentCnt=0;
@@ -54,12 +54,6 @@ public:
                 mpp[temp->left]={temp,currentCnt};
                 temp = temp->left;
             }
-            // else if (currentCnt==prevCnt){
-            //     temp = mpp[temp].first;
-            //     temp->right = new TreeNode(traversal[i]-'0');
-            //     mpp[temp->right]={temp,currentCnt};
-            //     temp = temp->right;
-            // }
             else{
                 temp = findParent(temp,mpp,currentCnt);
                 temp->right = new TreeNode(num);
