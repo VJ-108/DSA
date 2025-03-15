@@ -8,8 +8,9 @@ public:
                 i+=2;
             }
             else i++;
+            if (k==0) return true;
         }
-        return k<=0;
+        return false;
     }
     int minCapability(vector<int>& nums, int k) {
         int mini = INT_MAX,maxi = INT_MIN;
@@ -18,16 +19,14 @@ public:
             mini = min(mini,it);
         }
         int low = mini,high = maxi;
-        int ans = -1;
-        while(low<=high){
+        while(low<high){
             int mid = low + (high-low)/2;
             if (canHave(nums,k,mid)){
-                ans = mid;
-                high = mid-1;
+                high = mid;
             }else{
                 low = mid+1;
             }
         }
-        return ans;
+        return high;
     }
 };
