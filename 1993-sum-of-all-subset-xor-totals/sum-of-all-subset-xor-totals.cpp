@@ -7,6 +7,19 @@ public:
         return take + notTake;
     }
     int subsetXORSum(vector<int>& nums) {
-        return func(nums,0,0);
+        // return func(nums,0,0);
+
+        int sum=0;
+        int subset = 1<<nums.size();
+        for (int num=0;num<subset;num++){
+            int xo = 0;
+            for (int i=0;i<nums.size();i++){
+                if (num & (1<<i)){
+                    xo ^= nums[i];
+                }
+            }
+            sum += xo;
+        }
+        return sum;
     }
 };
