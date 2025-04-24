@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countCompleteSubarrays(vector<int>& nums) {
-        set<int> st;
+        unordered_set<int> st;
         for (auto it: nums) st.insert(it);
         int cnt = 0;
 
@@ -17,7 +17,7 @@ public:
         // }
 
         int left = 0,right = 0;
-        map<int,int> mpp;
+        unordered_map<int,int> mpp;
         while(right<nums.size()){
             mpp[nums[right]]++;
             while(mpp.size()==st.size()){
