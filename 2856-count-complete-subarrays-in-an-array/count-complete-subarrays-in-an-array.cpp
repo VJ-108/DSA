@@ -1,11 +1,5 @@
 class Solution {
 public:
-    bool func(set<int> st,set<int> temp){
-        for (auto it: st){
-            if (temp.find(it)==temp.end()) return false;
-        }
-        return true;
-    }
     int countCompleteSubarrays(vector<int>& nums) {
         set<int> st;
         for (auto it: nums) st.insert(it);
