@@ -9,12 +9,13 @@ public:
         int left = 0;
         for (int right = 0;right<nums.size();right++){
             if (nums[right]==maxi) cntOfMax++;
-            if (cntOfMax >= k) subarray += nums.size() - right;
+            // if (cntOfMax >= k) subarray += nums.size() - right;
             while(cntOfMax >= k){
                 if (nums[left]==maxi) cntOfMax--;
-                else subarray += nums.size() - right;
+                // else subarray += nums.size() - right;
                 left++;
             }
+            subarray += left;
         }
         return subarray;
     }
