@@ -1,26 +1,24 @@
 class Solution {
 public:
+    pair<int,int> findMajor(vector<int>&temp){
+        int ntemp_key = INT_MIN,ntemp_val = INT_MIN;
+        unordered_map<int,int> mpp;
+        for (int i=0;i<temp.size();i++){
+            mpp[temp[i]]++;
+        }
+
+        for (auto [key,value]: mpp){
+            if (value > ntemp_val){
+                ntemp_key = key;
+                ntemp_val = value;
+            }
+        }
+
+        return {ntemp_key, ntemp_val};
+    }
     int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
-        unordered_map<int,int> mpp1,mpp2;
-        for (int i=0;i<tops.size();i++){
-            mpp1[tops[i]]++;
-            mpp2[bottoms[i]]++;
-        }
-        
-        int ntops_key = INT_MIN,ntops_val = INT_MIN;
-        int nbots_key = INT_MIN,nbots_val = INT_MIN;
-        for (auto [key,value]: mpp1){
-            if (value > ntops_val){
-                ntops_key = key;
-                ntops_val = value;
-            }
-        }
-        for (auto [key,value]: mpp2){
-            if (value > nbots_val){
-                nbots_key = key;
-                nbots_val = value;
-            }
-        }
+        auto [ntops_key,ntops_val] = findMajor(tops);
+        auto [nbots_key,nbots_val] = findMajor(bottoms);
         
         int cnt_top = 0;
         for (int i=0;i<tops.size();i++){
