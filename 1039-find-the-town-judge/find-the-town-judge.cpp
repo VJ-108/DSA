@@ -12,15 +12,12 @@ public:
         //     if (indegree[i]==n-1 && outdegree[i]==0) return i;
         // }
 
-        unordered_map<int,int> mpp;
-        for (int i=1;i<=n;i++) mpp[i]=0;
+        vector<int> vec(n+1,0);
         for (auto it: trust){
-            mpp[it[0]]--;
-            mpp[it[1]]++;
+            vec[it[0]]--;
+            vec[it[1]]++;
         }
-        for (auto [key,val]: mpp){
-            if (val == n-1) return key;
-        }
+        for (int i=1;i<=n;i++) if (vec[i]==n-1) return i;
         return -1;
     }
 };
