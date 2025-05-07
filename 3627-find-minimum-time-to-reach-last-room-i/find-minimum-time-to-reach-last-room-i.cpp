@@ -20,7 +20,8 @@ public:
                 if (nr>=0 && nr<n && nc>=0 && nc<m && !vis[nr][nc]){
                     vis[nr][nc] = 1;
                     int nt = t;
-                    while(nt<grid[nr][nc]) nt++;
+                    // while(nt<grid[nr][nc]) nt++;
+                    nt = max(grid[nr][nc],nt);
                     pq.push({nt+1,{nr,nc}});
                     // cout<<'{'<<nr<<','<<nc<<'}'<<" "<<nt+1<<endl;
                 }
